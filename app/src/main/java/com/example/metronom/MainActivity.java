@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
 		options = new Options();
 		SharedPreferences prefs = this.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-		/*isVibrate = prefs.getBoolean(VIBRATE, false);
-		isFlash = prefs.getBoolean(FLASH, false);
-		isSound = prefs.getBoolean(SOUND, false);
-		bpm = prefs.getInt(BPM, 100);*/
 
 		options.setIsVibtare(prefs.getBoolean(VIBRATE, false));
 		options.setIsFlash(prefs.getBoolean(FLASH, false));
@@ -76,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 		btnVib.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				isVibrate = !isVibrate;
 				options.setIsVibtare(!options.isVibtare());
 				vibrateToggle();
 			}
@@ -85,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 		btnFlash.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				isFlash = !isFlash;
 				options.setIsFlash(!options.isFlash());
 				flashToggle();
 			}
@@ -94,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 		btnSound.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				isSound = !isSound;
 				options.setIsSound(!options.isSound());
 				soundToggle();
 			}
