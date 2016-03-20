@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Metronom</string>
+    <string name="stop">stop</string>
+    <string name="start">start</string>
+    <string name="indicator">indicator</string>
+    <string name="plus">+</string>
+    <string name="minus">–</string>
+    <string name="set_bpm">set bpm you need below</string>
+    <string name="sound">sound</string>
+    <string name="flash">flash</string>
+    <string name="vibration">vibration</string>
+    <string name="manual_mode">Manual Mode</string>
+</resources>
