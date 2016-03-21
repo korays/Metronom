@@ -46,7 +46,9 @@ public class BeatService extends Service{
 
 			sendMsgToActivity("beat");
 
-			mHandler.postDelayed(this, 60000 / options.getBpm());
+			if (options.getBpm() != 0) {
+				mHandler.postDelayed(this, 60000 / options.getBpm());
+			}
 		}
 	};
 

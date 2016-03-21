@@ -94,6 +94,7 @@
 		android:maxLines="1"
 		android:singleLine="true"
 		android:inputType="number"
+		android:maxLength="3"
 		android:background="@null"/>
 
 	<LinearLayout
