@@ -14,7 +14,6 @@ import android.os.RemoteException;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
 public class BeatService extends Service{
 
@@ -31,7 +30,6 @@ public class BeatService extends Service{
 	Runnable runnable = new Runnable() {
 		@Override
 		public void run() {
-			Log.w(TAG, "runnable");
 			if (options.isVibtare()) {
 				vibrator.vibrate(30);
 			}
@@ -79,8 +77,6 @@ public class BeatService extends Service{
 		mActivityMessenger = intent.getParcelableExtra("Messenger");
 		vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-		getCamera();
-
 		if (options != null) {
 			if (options.isBeatOn()) {
 				sendMsgToActivity("already beating");
@@ -113,9 +109,15 @@ public class BeatService extends Service{
 		public void handleMessage(Message msg) {
 			options = (Options)msg.obj;
 			if (options.isBeatOn()) {
+				getCamera();
 				startBeating();
 			} else {
 				stopBeating();
+				if (camera!=null) {
+					camera.stopPreview();
+					camera.release();
+					camera = null;
+				}
 			}
 		}
 	}
@@ -123,7 +125,7 @@ public class BeatService extends Service{
 	private void getCamera() {
 		if (camera == null) {
 			try {
-				camera = Camera.open();
+				camera = Camera.open(0);
 				parameters = camera.getParameters();
 			} catch (RuntimeException e) {
 				Log.e(TAG, e.getMessage());
@@ -136,7 +138,6 @@ public class BeatService extends Service{
 		if (camera == null || parameters == null) {
 			return;
 		}
-
 		parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
 		camera.setParameters(parameters);
 //		camera.startPreview();
@@ -148,7 +149,6 @@ public class BeatService extends Service{
 		}
 		parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
 		camera.setParameters(parameters);
-		camera.stopPreview();
 	}
 
 
