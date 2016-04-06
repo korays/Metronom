@@ -40,6 +40,7 @@ public class BeatService extends Service{
 			if (options.isSound()) {
 				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
 				toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 100);
+				toneG.release();
 			}
 
 			sendMsgToActivity("beat");
